@@ -14,6 +14,11 @@ Built for the Meta Global AI Developer Hackathon (Indie Developer track), answer
 *Push the Frontier* problem statement: multimodal agents that understand a physical
 system's failure and prove a fix in physics simulation.
 
+
+<img width="1512" height="982" alt="Screenshot 2026-11-04 at 12 34 51 AM" src="https://github.com/user-attachments/assets/574e24ec-da95-4025-ba68-91b300d72e46" />
+
+
+
 ## The review board
 
 Hypotheses compete; physics decides. The bottom-right panel has two tabs: **Review board**
