@@ -122,7 +122,7 @@ def main(n_frames: int = 24):
             "sam31_hit@0.5": round(hit([r["sam31_iou"] for r in sel]), 3),
         }
     summary["sam31_mask_iou_all_frames"] = {meta["objects"][k]: round(mean(v), 3) for k, v in sam_mask_iou.items()}
-    summary["models"] = {"reasoning": meta_api.SPARK_MODEL, "segmentation": meta_api.SAM_MODEL}
+    summary["models"] = {"reasoning": meta_api.REASONING_MODEL, "segmentation": meta_api.SAM_MODEL}
 
     (ROOT / "eval" / "results.json").write_text(json.dumps({"summary": summary, "rows": rows}, indent=2))
     print("\n                 box IoU (mean)      hit rate (IoU >= 0.5)")

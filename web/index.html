@@ -17,7 +17,8 @@
       <span>Pointer</span>
     </div>
     <div class="episode">
-      <span id="ep-name">Loading episode</span>
+      <label class="sr-only" for="episode">Episode</label><select id="episode" class="ep-select"></select>
+      <button type="button" id="mystery" class="mystery-btn" title="Simulate a new failure with a random, hidden cause">New mystery</button>
       <span id="ep-outcome" class="outcome"></span>
     </div>
     <div class="models" id="models"></div>
@@ -27,10 +28,14 @@
     <section class="panel video-panel" aria-label="Camera">
       <div class="panel-head">
         <h2>Front camera</h2>
+        <div class="runs" id="runs" role="group" aria-label="Which run" hidden>
+          <button type="button" data-v="orig" aria-pressed="true">Original run</button>
+          <button type="button" data-v="fixed" aria-pressed="false">Fixed run</button>
+        </div>
         <span class="hint" id="mask-source"></span>
       </div>
       <div class="video-wrap" id="video-wrap">
-        <video id="video" src="/episode/video.mp4" muted playsinline preload="auto"></video>
+        <video id="video" muted playsinline preload="auto"></video>
         <canvas id="overlay"></canvas>
       </div>
       <div class="transport">
@@ -43,7 +48,7 @@
     </section>
 
     <section class="panel tele-panel" aria-label="Telemetry">
-      <div class="panel-head"><h2>Telemetry</h2><span class="hint">100 Hz</span></div>
+      <div class="panel-head"><h2>Telemetry</h2><span class="hint" id="ghost-note">100 Hz</span></div>
       <div class="charts" id="charts"></div>
     </section>
 
@@ -53,10 +58,12 @@
     </section>
 
     <section class="panel ask-panel" aria-label="Ask Pointer">
-      <div class="caption" id="caption" aria-live="polite">
-        <p class="caption-empty">Hold the mic or press and hold space, then ask why the run failed.</p>
+      <div class="tabs" role="tablist" aria-label="Board and findings">
+        <button type="button" role="tab" data-tab="board" aria-selected="true" aria-controls="board">Review board<span class="live" id="board-live" hidden></span></button>
+        <button type="button" role="tab" data-tab="findings" aria-selected="false" aria-controls="answer">Findings</button>
       </div>
-      <div class="suggest" id="suggest"></div>
+      <div class="board" id="board" role="tabpanel" aria-live="polite"></div>
+      <div class="answer" id="answer" role="tabpanel" aria-live="polite" hidden></div>
       <form class="ask" id="ask-form">
         <button type="button" id="mic" class="mic" aria-label="Hold to talk">
           <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none"/></svg>

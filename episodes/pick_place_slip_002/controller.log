@@ -1,0 +1,44 @@
+[     0ms] INFO  supervisor     episode pick_place_slip_002 start  task=pick_place  object=steel_block  target=bin_A
+[     0ms] INFO  finger_L       driver online  fw=2.4.1  force_limit=12.0N  temp=41.2C
+[     0ms] INFO  finger_R       driver online  fw=2.4.1  force_limit=12.0N  temp=39.8C
+[     0ms] INFO  grasp_mon      monitor armed  slip_thresh=8mm  min_normal=1.0N
+[     0ms] INFO  controller     grip profile=eco  grip_force=5.1N  (object_db: block_A mu=0.70 mass=0.25kg)
+[     0ms] INFO  perception     object detected  class=block_A  surface=metal  sheen=high
+[     0ms] INFO  controller     phase -> approach
+[     0ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[     0ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[   500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[   500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1000ms] INFO  controller     phase -> descend
+[  1000ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1000ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1800ms] INFO  controller     phase -> close
+[  2000ms] DEBUG finger_L       tau=  4.90N  pos= 16.8mm  temp= 41.3C
+[  2000ms] DEBUG finger_R       tau=  4.90N  pos= 16.8mm
+[  2200ms] INFO  controller     phase -> settle
+[  2210ms] INFO  grasp_mon      grasp confirmed  N_L=5.1N  N_R=5.1N
+[  2500ms] INFO  controller     phase -> lift
+[  2500ms] DEBUG finger_L       tau=  5.10N  pos= 16.5mm  temp= 43.4C
+[  2500ms] DEBUG finger_R       tau=  5.10N  pos= 16.5mm
+[  2660ms] ERROR grasp_mon      object slip detected  slip=8.9mm  N_L=0.00N (min 1.0N)  N_R=0.0N
+[  2660ms] ERROR supervisor     object dropped  cube=(0.150,0.000,0.028)  outside bin_A
+[  3000ms] DEBUG finger_L       tau= -3.06N  pos= 55.1mm  temp= 45.1C
+[  3000ms] DEBUG finger_R       tau= -3.06N  pos= 55.1mm
+[  3200ms] INFO  controller     phase -> transport
+[  3500ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 45.9C
+[  3500ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  4000ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 46.6C
+[  4000ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  4500ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 47.2C
+[  4500ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  4600ms] INFO  controller     phase -> place
+[  5000ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 47.7C
+[  5000ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  5200ms] INFO  controller     phase -> release
+[  5500ms] DEBUG finger_L       tau= -5.10N  pos= 55.4mm  temp= 48.5C
+[  5500ms] DEBUG finger_R       tau= -5.10N  pos= 55.4mm
+[  6000ms] DEBUG finger_L       tau= -5.10N  pos= 55.4mm  temp= 49.6C
+[  6000ms] DEBUG finger_R       tau= -5.10N  pos= 55.4mm
+[  6000ms] INFO  supervisor     episode end  result=FAIL

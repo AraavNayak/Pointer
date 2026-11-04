@@ -11,6 +11,7 @@ Docs: https://dev.meta.ai/docs/overview
 import base64
 import json
 import os
+import time
 import uuid
 
 import numpy as np
@@ -28,6 +29,14 @@ SPARK_MODEL = os.environ.get("MUSE_SPARK_MODEL", "muse-spark-1.3")
 SAM_MODEL = os.environ.get("SAM_MODEL", "sam-3.1")
 ASR_MODEL = os.environ.get("ASR_MODEL", "muse-voice-transcribe-1.0")
 
+# Optional stand-in for Muse Spark while testing (any OpenAI-compatible Chat Completions
+# endpoint that accepts images). Never use this for the demo or the submission.
+TEST_MODEL = os.environ.get("TEST_MODEL", "").strip()
+TEST_API_BASE = os.environ.get("TEST_API_BASE", "https://generativelanguage.googleapis.com/v1beta/openai/")
+TEST_API_KEY = os.environ.get("TEST_API_KEY", "").strip()
+USING_TEST_MODEL = bool(TEST_MODEL and TEST_API_KEY)
+REASONING_MODEL = f"{TEST_MODEL} (test stand-in)" if USING_TEST_MODEL else SPARK_MODEL
+
 
 def api_key() -> str:
     key = os.environ.get("MODEL_API_KEY")
@@ -42,13 +51,30 @@ def client() -> OpenAI:
 
 # ---------------------------------------------------------------- Muse Spark
 
+SPARK_EFFORT = os.environ.get("MUSE_SPARK_EFFORT", "low")  # "none" omits the setting
+
+# Running totals, read by eval scripts to report calls and tokens per session.
+import threading as _threading
+USAGE = {"spark_calls": 0, "input_tokens": 0, "output_tokens": 0, "sam_calls": 0}
+_usage_lock = _threading.Lock()
+
+
+def _add_usage(**kw):
+    with _usage_lock:
+        for k, v in kw.items():
+            USAGE[k] = USAGE.get(k, 0) + (v or 0)
+
+
 def spark_json(system: str, content: list, schema: dict, schema_name: str = "answer",
-               reasoning_effort: str | None = "low") -> dict:
+               reasoning_effort: str | None = None) -> dict:
     """Call Muse Spark through the Responses API and return parsed JSON.
 
     `content` is a list of Responses input parts: {"type": "input_text", ...} and
     {"type": "input_image", "image_url": "data:image/jpeg;base64,..."}.
     """
+    if USING_TEST_MODEL:
+        return _test_json(system, content, schema, schema_name)
+    effort = reasoning_effort or SPARK_EFFORT
     kwargs = dict(
         model=SPARK_MODEL,
         input=[
@@ -57,11 +83,74 @@ def spark_json(system: str, content: list, schema: dict, schema_name: str = "ans
         ],
         text={"format": {"type": "json_schema", "name": schema_name, "schema": schema}},
     )
-    if reasoning_effort:
-        kwargs["reasoning"] = {"effort": reasoning_effort}
-    resp = client().responses.create(**kwargs)
+    if effort and effort != "none":
+        kwargs["reasoning"] = {"effort": effort}
+    n_img = sum(p.get("type") == "input_image" for p in content)
+    t0 = time.time()
+    resp = None
+    for attempt in range(4):
+        try:
+            resp = client().responses.create(**kwargs)
+            break
+        except Exception as e:
+            msg = str(e).lower()
+            if "reasoning" in kwargs and "reasoning" in msg and "rate" not in msg:
+                kwargs.pop("reasoning")  # model rejected the effort value; retry with its default
+                continue
+            if attempt < 3 and ("429" in msg or "rate limit" in msg or "too many requests" in msg):
+                time.sleep(2 * (attempt + 1))   # parallel agents can hit rate limits; back off
+                continue
+            raise
+    dt = time.time() - t0
+    u = getattr(resp, "usage", None)
+    toks = ""
+    if u is not None:
+        rt = getattr(getattr(u, "output_tokens_details", None), "reasoning_tokens", None)
+        toks = f" in={getattr(u, 'input_tokens', '?')} out={getattr(u, 'output_tokens', '?')}" + (
+            f" reasoning={rt}" if rt is not None else "")
+    _add_usage(spark_calls=1, input_tokens=getattr(u, "input_tokens", 0) if u is not None else 0,
+               output_tokens=getattr(u, "output_tokens", 0) if u is not None else 0)
+    print(f"[muse-spark] {SPARK_MODEL} effort={kwargs.get('reasoning', {}).get('effort', 'default')} "
+          f"images={n_img} {dt:.1f}s{toks}", flush=True)
     text = resp.output_text or ""
     return _loads_lenient(text)
+
+
+def _test_json(system: str, content: list, schema: dict, schema_name: str) -> dict:
+    """Same request through Chat Completions on the test provider."""
+    parts = []
+    for p in content:
+        if p.get("type") == "input_text":
+            parts.append({"type": "text", "text": p["text"]})
+        elif p.get("type") == "input_image":
+            parts.append({"type": "image_url", "image_url": {"url": p["image_url"]}})
+    c = OpenAI(api_key=TEST_API_KEY, base_url=TEST_API_BASE, timeout=180)
+    messages = [{"role": "system", "content": system}, {"role": "user", "content": parts}]
+    t0 = time.time()
+    try:
+        for attempt in range(4):
+            try:
+                resp = c.chat.completions.create(
+                    model=TEST_MODEL, messages=messages,
+                    response_format={"type": "json_schema", "json_schema": {"name": schema_name, "schema": schema}})
+                break
+            except Exception as e:
+                if attempt < 3 and ("429" in str(e) or "rate" in str(e).lower()):
+                    time.sleep(3 * (attempt + 1))
+                    continue
+                raise
+    except Exception as e:
+        # Some providers reject parts of JSON Schema; fall back to plain JSON mode with the schema in the prompt.
+        print(f"[test-model] json_schema rejected ({str(e)[:120]}); retrying in JSON mode", flush=True)
+        messages[0]["content"] = system + "\n\nReply with only a JSON object matching this JSON Schema:\n" + json.dumps(schema)
+        resp = c.chat.completions.create(model=TEST_MODEL, messages=messages,
+                                         response_format={"type": "json_object"})
+    n_img = sum(p["type"] == "image_url" for p in parts)
+    u = getattr(resp, "usage", None)
+    _add_usage(spark_calls=1, input_tokens=getattr(u, "prompt_tokens", 0) if u is not None else 0,
+               output_tokens=getattr(u, "completion_tokens", 0) if u is not None else 0)
+    print(f"[test-model] {TEST_MODEL} images={n_img} {time.time() - t0:.1f}s", flush=True)
+    return _loads_lenient(resp.choices[0].message.content or "")
 
 
 def _loads_lenient(text: str) -> dict:
@@ -84,6 +173,7 @@ def image_part(jpeg_bytes: bytes) -> dict:
 
 def _sam_stream_text(content: list, metadata: dict | None = None) -> str:
     """Run a streaming SAM 3.1 request and return the full special-token output text."""
+    _add_usage(sam_calls=1)
     stream = client().responses.create(
         model=SAM_MODEL,
         input=[{"role": "user", "content": content}],
@@ -158,6 +248,19 @@ def sam_track_video(video_bytes: bytes, boxes: dict, width: int, height: int,
         with open(raw_out_path, "w") as f:
             f.write(text)
     return parse_sam_output(text, width, height, video=True)
+
+
+def sam_segment_text(jpeg_bytes: bytes, prompt: str, width: int, height: int) -> list[np.ndarray]:
+    """Segment every instance of a short noun phrase on one frame. Returns full-frame binary masks."""
+    content = [{"type": "input_text", "text": prompt}, image_part(jpeg_bytes)]
+    text = _sam_stream_text(content)
+    masks = parse_sam_output(text, width, height, video=False)
+    frame = masks.get(0) or (next(iter(masks.values())) if masks else {})
+    return [frame[k] for k in sorted(frame, key=lambda k: int(k) if str(k).isdigit() else 0)]
+
+
+def sam_available() -> bool:
+    return bool(os.environ.get("MODEL_API_KEY")) and os.environ.get("POINTER_MOCK") != "1"
 
 
 def sam_segment_point(jpeg_bytes: bytes, x: int, y: int, width: int, height: int) -> np.ndarray | None:
