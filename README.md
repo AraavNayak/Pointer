@@ -10,14 +10,11 @@ wins. Pointer then explains the failure by voice while pointing at the evidence 
 view at once: the object outlined in the video (tracked by SAM 3.1), a cursor on the
 telemetry, and the log line, linked by a pink thread.
 
+<img width="1512" height="982" alt="Screenshot 2026-11-04 at 12 46 51 PM" src="https://github.com/user-attachments/assets/3e388179-fc8a-4635-8e48-30baf40e5114" />
+
 Built for the Meta Global AI Developer Hackathon (Indie Developer track), answering the
 *Push the Frontier* problem statement: multimodal agents that understand a physical
 system's failure and prove a fix in physics simulation.
-
-
-<img width="1512" height="982" alt="Screenshot 2026-11-04 at 12 46 51 PM" src="https://github.com/user-attachments/assets/3e388179-fc8a-4635-8e48-30baf40e5114" />
-
-
 
 ## The review board
 
