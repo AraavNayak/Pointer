@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pointer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225%22 fill=%22%23ff4d8d%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229.5%22 fill=%22none%22 stroke=%22%23ff4d8d%22 stroke-width=%221.5%22/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/web/style.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="9.5" fill="none"/></svg>
+      <span>Pointer</span>
+    </div>
+    <div class="episode">
+      <span id="ep-name">Loading episode</span>
+      <span id="ep-outcome" class="outcome"></span>
+    </div>
+    <div class="models" id="models"></div>
+  </header>
+
+  <main class="grid">
+    <section class="panel video-panel" aria-label="Camera">
+      <div class="panel-head">
+        <h2>Front camera</h2>
+        <span class="hint" id="mask-source"></span>
+      </div>
+      <div class="video-wrap" id="video-wrap">
+        <video id="video" src="/episode/video.mp4" muted playsinline preload="auto"></video>
+        <canvas id="overlay"></canvas>
+      </div>
+      <div class="transport">
+        <button id="play" class="icon-btn" aria-label="Play">
+          <svg viewBox="0 0 24 24"><path id="play-icon" d="M8 5v14l11-7z"/></svg>
+        </button>
+        <canvas id="timeline" aria-label="Timeline with log events"></canvas>
+        <span id="clock" class="clock">0.00 s</span>
+      </div>
+    </section>
+
+    <section class="panel tele-panel" aria-label="Telemetry">
+      <div class="panel-head"><h2>Telemetry</h2><span class="hint">100 Hz</span></div>
+      <div class="charts" id="charts"></div>
+    </section>
+
+    <section class="panel log-panel" aria-label="Controller log">
+      <div class="panel-head"><h2>Controller log</h2><span class="hint" id="log-count"></span></div>
+      <ol class="log" id="log"></ol>
+    </section>
+
+    <section class="panel ask-panel" aria-label="Ask Pointer">
+      <div class="caption" id="caption" aria-live="polite">
+        <p class="caption-empty">Hold the mic or press and hold space, then ask why the run failed.</p>
+      </div>
+      <div class="suggest" id="suggest"></div>
+      <form class="ask" id="ask-form">
+        <button type="button" id="mic" class="mic" aria-label="Hold to talk">
+          <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none"/></svg>
+        </button>
+        <input id="question" type="text" placeholder="Or type a question" autocomplete="off">
+        <button type="submit" class="send">Ask</button>
+      </form>
+    </section>
+  </main>
+
+  <svg id="thread" class="thread" aria-hidden="true"></svg>
+  <script src="/web/app.js"></script>
+</body>
+</html>

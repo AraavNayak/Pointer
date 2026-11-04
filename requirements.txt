@@ -1,0 +1,14 @@
+fastapi>=0.110
+uvicorn>=0.29
+openai>=1.40
+requests>=2.31
+python-dotenv>=1.0
+meta-sam-parser>=0.1.0
+numpy>=1.26
+pandas>=2.1
+pillow>=10.0
+opencv-python-headless>=4.9
+imageio>=2.34
+imageio-ffmpeg>=0.4.9
+# only needed to regenerate the episode
+mujoco>=3.1

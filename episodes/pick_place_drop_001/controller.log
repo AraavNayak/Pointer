@@ -1,0 +1,45 @@
+[     0ms] INFO  supervisor     episode pick_place_drop_001 start  task=pick_place  object=red_cube  target=bin_A
+[     0ms] INFO  finger_L       driver online  fw=2.4.1  force_limit=12.0N  temp=41.2C
+[     0ms] INFO  finger_R       driver online  fw=2.4.1  force_limit=12.0N  temp=39.8C
+[     0ms] INFO  grasp_mon      monitor armed  slip_thresh=8mm  min_normal=1.0N
+[     0ms] INFO  controller     phase -> approach
+[     0ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[     0ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[   500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[   500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1000ms] INFO  controller     phase -> descend
+[  1000ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1000ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1800ms] INFO  controller     phase -> close
+[  2000ms] DEBUG finger_L       tau=  4.90N  pos= 16.8mm  temp= 41.5C
+[  2000ms] DEBUG finger_R       tau=  4.90N  pos= 16.8mm
+[  2200ms] INFO  controller     phase -> settle
+[  2210ms] INFO  grasp_mon      grasp confirmed  N_L=12.0N  N_R=12.0N
+[  2500ms] INFO  controller     phase -> lift
+[  2500ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 54.9C
+[  2500ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3000ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 67.0C
+[  3000ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3140ms] WARN  finger_L       driver temp 70.0C exceeds soft limit 70.0C
+[  3200ms] INFO  controller     phase -> transport
+[  3500ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 77.3C
+[  3500ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3644ms] ERROR finger_L       thermal limit 80C reached at |tau|=12.00N; torque limit derated 12.00N -> 0.60N
+[  3644ms] WARN  controller     finger_L saturated; continuing trajectory (no grasp re-plan configured)
+[  3670ms] ERROR grasp_mon      object slip detected  slip=12.7mm  N_L=3.56N (min 1.0N)  N_R=9.0N
+[  3910ms] ERROR supervisor     object dropped  cube=(0.344,0.018,0.027)  outside bin_A
+[  4000ms] DEBUG finger_L       tau=  0.60N  pos= 25.0mm  temp= 76.6C
+[  4000ms] DEBUG finger_R       tau=  0.00N  pos= 50.0mm
+[  4500ms] DEBUG finger_L       tau=  0.60N  pos= 33.1mm  temp= 72.3C
+[  4500ms] DEBUG finger_R       tau=  0.60N  pos= 49.0mm
+[  4600ms] INFO  controller     phase -> place
+[  5000ms] DEBUG finger_L       tau=  0.60N  pos= 33.1mm  temp= 68.7C
+[  5000ms] DEBUG finger_R       tau=  0.60N  pos= 49.0mm
+[  5200ms] INFO  controller     phase -> release
+[  5500ms] DEBUG finger_L       tau= -0.32N  pos= 34.5mm  temp= 65.5C
+[  5500ms] DEBUG finger_R       tau= -0.30N  pos= 34.5mm
+[  6000ms] DEBUG finger_L       tau=  0.03N  pos= -0.0mm  temp= 62.3C
+[  6000ms] DEBUG finger_R       tau=  0.02N  pos= -0.0mm
+[  6000ms] INFO  supervisor     episode end  result=FAIL

@@ -1,0 +1,24 @@
+{
+  "episode_id": "pick_place_drop_001",
+  "task": "Pick the red cube and place it in the blue bin.",
+  "fps": 30,
+  "width": 640,
+  "height": 480,
+  "duration_ms": 6000,
+  "n_frames": 180,
+  "objects": {
+    "1": "red cube",
+    "2": "gripper"
+  },
+  "sam_prompt_points": {
+    "1": [
+      195,
+      298
+    ],
+    "2": [
+      55,
+      106
+    ]
+  },
+  "outcome": "FAIL: object dropped"
+}
