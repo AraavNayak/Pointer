@@ -15,7 +15,7 @@ Built for the Meta Global AI Developer Hackathon (Indie Developer track), answer
 system's failure and prove a fix in physics simulation.
 
 
-<img width="1512" height="982" alt="Screenshot 2026-11-04 at 12 34 51 AM" src="https://github.com/user-attachments/assets/574e24ec-da95-4025-ba68-91b300d72e46" />
+<img width="1512" height="982" alt="Screenshot 2026-11-04 at 12 46 51 PM" src="https://github.com/user-attachments/assets/3e388179-fc8a-4635-8e48-30baf40e5114" />
 
 
 
