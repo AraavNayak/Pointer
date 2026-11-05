@@ -1,0 +1,48 @@
+[     0ms] INFO  supervisor     episode mystery_2228 start  task=pick_place  object=part  target=bin_A
+[     0ms] INFO  finger_L       driver online  fw=2.4.1  force_limit=12.0N  temp=41.2C
+[     0ms] INFO  finger_R       driver online  fw=2.4.1  force_limit=12.0N  temp=39.8C
+[     0ms] INFO  grasp_mon      monitor armed  slip_thresh=8mm  min_normal=1.0N
+[     0ms] INFO  controller     grip profile=standard  grip_force=4.3N  (object_db: part mu=0.70 mass=0.25kg)
+[     0ms] INFO  perception     object detected  class=part
+[     0ms] INFO  planner        workspace map v12 (2026-10-21)  obstacles between pick and place: none
+[     0ms] INFO  planner        transport height 12.5cm (object bottom)  clearance 5.0cm over mapped geometry
+[     0ms] INFO  controller     phase -> approach
+[     0ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[     0ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[   500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[   500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1000ms] INFO  controller     phase -> descend
+[  1000ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1000ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1800ms] INFO  controller     phase -> close
+[  2000ms] DEBUG finger_L       tau=  4.30N  pos= 16.8mm  temp= 41.3C
+[  2000ms] DEBUG finger_R       tau=  4.30N  pos= 16.8mm
+[  2200ms] INFO  controller     phase -> settle
+[  2210ms] INFO  grasp_mon      grasp confirmed  N_L=4.3N  N_R=4.3N
+[  2260ms] WARN  perception     exposure auto-adjust  gain=+1.5dB (glare on table)
+[  2500ms] INFO  controller     phase -> lift
+[  2500ms] DEBUG finger_L       tau=  4.30N  pos= 16.4mm  temp= 43.1C
+[  2500ms] DEBUG finger_R       tau=  4.30N  pos= 16.4mm
+[  2640ms] ERROR grasp_mon      object slip detected  slip=8.4mm  N_L=4.68N (min 1.0N)  N_R=4.7N
+[  2640ms] ERROR supervisor     object dropped  cube=(0.150,-0.000,0.025)  outside bin_A
+[  3000ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 44.5C
+[  3000ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  3200ms] INFO  controller     phase -> transport
+[  3500ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 45.4C
+[  3500ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  4000ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 46.1C
+[  4000ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  4330ms] WARN  finger_R       encoder jitter 0.3mm (within tolerance)
+[  4500ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 46.8C
+[  4500ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  4600ms] INFO  controller     phase -> place
+[  5000ms] DEBUG finger_L       tau= -3.25N  pos= 55.4mm  temp= 47.4C
+[  5000ms] DEBUG finger_R       tau= -3.25N  pos= 55.4mm
+[  5200ms] INFO  controller     phase -> release
+[  5500ms] DEBUG finger_L       tau= -4.30N  pos= 55.4mm  temp= 48.1C
+[  5500ms] DEBUG finger_R       tau= -4.30N  pos= 55.4mm
+[  6000ms] DEBUG finger_L       tau= -4.30N  pos= 55.4mm  temp= 48.9C
+[  6000ms] DEBUG finger_R       tau= -4.30N  pos= 55.4mm
+[  6000ms] INFO  supervisor     episode end  result=FAIL

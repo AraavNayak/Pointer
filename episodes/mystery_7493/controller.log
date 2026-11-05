@@ -1,0 +1,50 @@
+[     0ms] INFO  supervisor     episode mystery_7493 start  task=pick_place  object=part  target=bin_A
+[     0ms] INFO  finger_L       driver online  fw=2.4.1  force_limit=12.0N  temp=41.2C
+[     0ms] INFO  finger_R       driver online  fw=2.4.1  force_limit=12.0N  temp=39.8C
+[     0ms] INFO  grasp_mon      monitor armed  slip_thresh=8mm  min_normal=1.0N
+[     0ms] INFO  controller     grip profile=standard  grip_force=12.0N  (object_db: part mu=0.70 mass=0.25kg)
+[     0ms] INFO  perception     object detected  class=part
+[     0ms] INFO  planner        workspace map v12 (2026-10-21)  obstacles between pick and place: none
+[     0ms] INFO  planner        transport height 12.5cm (object bottom)  clearance 5.0cm over mapped geometry
+[     0ms] INFO  controller     phase -> approach
+[     0ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[     0ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[   500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[   500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1000ms] INFO  controller     phase -> descend
+[  1000ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1000ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1800ms] INFO  controller     phase -> close
+[  1870ms] WARN  power          bus voltage dip 23.4V (nominal 24V)
+[  2000ms] DEBUG finger_L       tau=  4.90N  pos= 16.8mm  temp= 41.3C
+[  2000ms] DEBUG finger_R       tau=  4.90N  pos= 16.8mm
+[  2200ms] INFO  controller     phase -> settle
+[  2210ms] INFO  grasp_mon      grasp confirmed  N_L=12.0N  N_R=12.0N
+[  2500ms] INFO  controller     phase -> lift
+[  2500ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 46.1C
+[  2500ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3000ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 50.5C
+[  3000ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3200ms] INFO  controller     phase -> transport
+[  3500ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 54.2C
+[  3500ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3824ms] WARN  controller     x-axis effort spike  28.1N contact on carried object
+[  3870ms] ERROR grasp_mon      object slip detected  slip=10.2mm  N_L=13.71N (min 1.0N)  N_R=13.7N
+[  3946ms] ERROR controller     x-axis tracking error 65mm exceeds 20mm  (unexpected resistance)
+[  4000ms] DEBUG finger_L       tau= 12.00N  pos= 15.4mm  temp= 57.4C
+[  4000ms] DEBUG finger_R       tau= 12.00N  pos= 15.4mm
+[  4040ms] ERROR supervisor     object dropped  cube=(0.294,0.000,0.025)  outside bin_A
+[  4050ms] WARN  planner        replan request from operator UI ignored (no change)
+[  4500ms] DEBUG finger_L       tau= 12.00N  pos= 15.7mm  temp= 60.2C
+[  4500ms] DEBUG finger_R       tau= 12.00N  pos= 15.7mm
+[  4600ms] INFO  controller     phase -> place
+[  5000ms] DEBUG finger_L       tau= 12.00N  pos= 15.9mm  temp= 62.5C
+[  5000ms] DEBUG finger_R       tau= 12.00N  pos= 15.9mm
+[  5200ms] INFO  controller     phase -> release
+[  5500ms] DEBUG finger_L       tau= 10.81N  pos= 16.2mm  temp= 64.6C
+[  5500ms] DEBUG finger_R       tau= 10.81N  pos= 16.2mm
+[  6000ms] DEBUG finger_L       tau= -9.68N  pos= 16.1mm  temp= 63.8C
+[  6000ms] DEBUG finger_R       tau= -9.68N  pos= 16.1mm
+[  6000ms] INFO  supervisor     episode end  result=FAIL

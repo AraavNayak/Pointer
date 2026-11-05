@@ -1,0 +1,44 @@
+[     0ms] INFO  supervisor     episode fix_pick_place_drop_001_hold6_speed1_transport12p5 start  task=pick_place  object=red_cube  target=bin_A
+[     0ms] INFO  controller     patched config  hold_force_N=6  speed_scale=1  transport_height_cm=12.5
+[     0ms] INFO  finger_L       driver online  fw=2.4.1  force_limit=12.0N  temp=41.2C
+[     0ms] INFO  finger_R       driver online  fw=2.4.1  force_limit=12.0N  temp=39.8C
+[     0ms] INFO  grasp_mon      monitor armed  slip_thresh=8mm  min_normal=1.0N
+[     0ms] INFO  controller     phase -> approach
+[     0ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[     0ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[   500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[   500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1000ms] INFO  controller     phase -> descend
+[  1000ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1000ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1800ms] INFO  controller     phase -> close
+[  2000ms] DEBUG finger_L       tau=  4.90N  pos= 16.8mm  temp= 41.5C
+[  2000ms] DEBUG finger_R       tau=  4.90N  pos= 16.8mm
+[  2200ms] INFO  controller     phase -> settle
+[  2210ms] INFO  grasp_mon      grasp confirmed  N_L=12.0N  N_R=12.0N
+[  2210ms] INFO  controller     hold force -> 6.0N for transport
+[  2500ms] INFO  controller     phase -> lift
+[  2500ms] DEBUG finger_L       tau=  6.00N  pos= 16.5mm  temp= 50.8C
+[  2500ms] DEBUG finger_R       tau=  6.00N  pos= 16.5mm
+[  3000ms] DEBUG finger_L       tau=  6.00N  pos= 16.5mm  temp= 56.4C
+[  3000ms] DEBUG finger_R       tau=  6.00N  pos= 16.5mm
+[  3200ms] INFO  controller     phase -> transport
+[  3500ms] DEBUG finger_L       tau=  6.00N  pos= 16.5mm  temp= 61.3C
+[  3500ms] DEBUG finger_R       tau=  6.00N  pos= 16.5mm
+[  4000ms] DEBUG finger_L       tau=  6.00N  pos= 16.5mm  temp= 65.4C
+[  4000ms] DEBUG finger_R       tau=  6.00N  pos= 16.5mm
+[  4500ms] DEBUG finger_L       tau=  6.00N  pos= 16.5mm  temp= 69.0C
+[  4500ms] DEBUG finger_R       tau=  6.00N  pos= 16.5mm
+[  4600ms] INFO  controller     phase -> place
+[  4650ms] WARN  finger_L       driver temp 70.0C exceeds soft limit 70.0C
+[  5000ms] DEBUG finger_L       tau=  6.00N  pos= 16.5mm  temp= 72.1C
+[  5000ms] DEBUG finger_R       tau=  6.00N  pos= 16.5mm
+[  5200ms] INFO  controller     phase -> release
+[  5500ms] DEBUG finger_L       tau=  6.00N  pos= 16.5mm  temp= 74.8C
+[  5500ms] DEBUG finger_R       tau=  6.00N  pos= 16.5mm
+[  6000ms] DEBUG finger_L       tau=  0.03N  pos= -0.0mm  temp= 72.0C
+[  6000ms] DEBUG finger_R       tau=  0.02N  pos= -0.0mm
+[  6300ms] INFO  supervisor     object placed in bin_A  cube=(0.550,0.000,0.033)
+[  6300ms] INFO  supervisor     episode end  result=OK

@@ -1,0 +1,51 @@
+[     0ms] INFO  supervisor     episode mystery_6719 start  task=pick_place  object=part  target=bin_A
+[     0ms] INFO  finger_L       driver online  fw=2.4.1  force_limit=12.0N  temp=41.2C
+[     0ms] INFO  finger_R       driver online  fw=2.4.1  force_limit=12.0N  temp=39.8C
+[     0ms] INFO  grasp_mon      monitor armed  slip_thresh=8mm  min_normal=1.0N
+[     0ms] INFO  controller     grip profile=standard  grip_force=12.0N  (object_db: part mu=0.70 mass=0.25kg)
+[     0ms] INFO  perception     object detected  class=part
+[     0ms] INFO  planner        workspace map v12 (2026-10-21)  obstacles between pick and place: none
+[     0ms] INFO  planner        transport height 12.5cm (object bottom)  clearance 5.0cm over mapped geometry
+[     0ms] INFO  controller     phase -> approach
+[     0ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[     0ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[   500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[   500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1000ms] INFO  controller     phase -> descend
+[  1000ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1000ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1430ms] WARN  finger_R       encoder jitter 0.3mm (within tolerance)
+[  1500ms] DEBUG finger_L       tau=  0.00N  pos=  0.0mm  temp= 41.2C
+[  1500ms] DEBUG finger_R       tau=  0.00N  pos=  0.0mm
+[  1800ms] INFO  controller     phase -> close
+[  2000ms] DEBUG finger_L       tau=  4.90N  pos= 16.8mm  temp= 41.6C
+[  2000ms] DEBUG finger_R       tau=  4.90N  pos= 16.8mm
+[  2200ms] INFO  controller     phase -> settle
+[  2210ms] INFO  grasp_mon      grasp confirmed  N_L=12.0N  N_R=12.0N
+[  2500ms] INFO  controller     phase -> lift
+[  2500ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 55.5C
+[  2500ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3000ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 68.1C
+[  3000ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3200ms] INFO  controller     phase -> transport
+[  3374ms] WARN  finger_L       driver temp 76.3C exceeds soft limit 76.3C
+[  3500ms] DEBUG finger_L       tau= 12.00N  pos= 16.7mm  temp= 78.9C
+[  3500ms] DEBUG finger_R       tau= 12.00N  pos= 16.7mm
+[  3844ms] ERROR finger_L       thermal limit 85C reached at |tau|=12.00N; torque limit derated 12.00N -> 0.60N
+[  3844ms] WARN  controller     finger_L saturated; continuing trajectory (no grasp re-plan configured)
+[  3870ms] ERROR grasp_mon      object slip detected  slip=12.7mm  N_L=3.56N (min 1.0N)  N_R=9.0N
+[  4000ms] DEBUG finger_L       tau=  0.60N  pos=-34.4mm  temp= 83.7C
+[  4000ms] DEBUG finger_R       tau=  0.46N  pos= 49.1mm
+[  4110ms] ERROR supervisor     object dropped  cube=(0.431,0.018,0.026)  outside bin_A
+[  4500ms] DEBUG finger_L       tau=  0.60N  pos= 33.1mm  temp= 78.5C
+[  4500ms] DEBUG finger_R       tau=  0.61N  pos= 49.0mm
+[  4600ms] INFO  controller     phase -> place
+[  5000ms] DEBUG finger_L       tau=  0.60N  pos= 33.1mm  temp= 74.0C
+[  5000ms] DEBUG finger_R       tau=  0.60N  pos= 49.0mm
+[  5200ms] INFO  controller     phase -> release
+[  5280ms] WARN  controller     z-axis effort 18% above model during lift
+[  5500ms] DEBUG finger_L       tau= -0.32N  pos= 34.5mm  temp= 70.1C
+[  5500ms] DEBUG finger_R       tau= -0.30N  pos= 34.5mm
+[  6000ms] DEBUG finger_L       tau=  0.03N  pos= -0.0mm  temp= 66.2C
+[  6000ms] DEBUG finger_R       tau=  0.02N  pos= -0.0mm
+[  6000ms] INFO  supervisor     episode end  result=FAIL

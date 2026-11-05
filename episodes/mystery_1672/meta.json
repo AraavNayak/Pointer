@@ -1,0 +1,87 @@
+{
+  "episode_id": "mystery_1672",
+  "task": "Pick the part and place it in the blue bin.",
+  "scenario": "collision",
+  "title": "Mystery episode 1672",
+  "fps": 30,
+  "width": 640,
+  "height": 480,
+  "duration_ms": 6000,
+  "n_frames": 180,
+  "objects": {
+    "1": "part",
+    "2": "gripper"
+  },
+  "sam_prompt_points": {
+    "1": [
+      195,
+      298
+    ],
+    "2": [
+      55,
+      106
+    ]
+  },
+  "outcome": "FAIL: object dropped",
+  "params": {
+    "hold_force_N": 12.0,
+    "speed_scale": 1.0,
+    "transport_height_cm": 12.5
+  },
+  "mystery": {
+    "object": "part",
+    "rgba": "0.20 0.65 0.55 1",
+    "uniform_log": true,
+    "decoys": [
+      [
+        3.16,
+        "WARN",
+        "net",
+        "telemetry packet delayed 42ms (resent)"
+      ],
+      [
+        0.57,
+        "WARN",
+        "controller",
+        "z-axis effort 18% above model during lift"
+      ]
+    ],
+    "fixture": {
+      "x": 0.405,
+      "half_x": 0.026,
+      "half_y": 0.13,
+      "top": 0.168,
+      "rgba": "0.36 0.42 0.50 1"
+    },
+    "seed": 1672,
+    "scenario": "collision",
+    "title": "Mystery episode 1672"
+  },
+  "patchable": {
+    "hold_force_N": {
+      "min": 2.0,
+      "max": 12.0,
+      "desc": "grip force each finger applies after the grasp is confirmed",
+      "default": 12.0
+    },
+    "speed_scale": {
+      "min": 0.75,
+      "max": 1.5,
+      "desc": "speed multiplier for lift, transport and place (>1 is faster)",
+      "default": 1.0
+    },
+    "transport_height_cm": {
+      "min": 8.0,
+      "max": 20.0,
+      "desc": "height of the object's bottom above the table while it is carried",
+      "default": 12.5
+    }
+  },
+  "slip_ms": 3970,
+  "first_contact_ms": 3926,
+  "max_obstacle_contact_N": 200.0,
+  "max_driver_temp_C": 64.6,
+  "driver_limit_C": 80.0,
+  "driver_soft_C": 70.0,
+  "derate_ms": null
+}
