@@ -1,6 +1,6 @@
 # Pointer
 
-**A review board of AI agents that debates why your robot failed, and lets the physics simulator decide who is right.**
+**A review board of AI agents that debates why your robot failed, and lets the MuJoCo physics simulator decide who is right.**
 
 Pick a failed robot episode and ask, out loud, "Why did this run fail?" Three investigator
 agents, all running on Muse Spark, look into it at the same time, each from a different
